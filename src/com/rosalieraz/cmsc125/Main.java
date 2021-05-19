@@ -17,36 +17,32 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ArrayList<Process> process = new ArrayList<>();
+        ArrayList<Process> processList = new ArrayList<>();
 
         try {
             File dataSet= new File("C:\\Users\\Rosalie Razonable\\Downloads\\process1.txt");
             Scanner dataReader = new Scanner(dataSet);
             dataReader.nextLine();
             while (dataReader.hasNextLine()) {
-                int i  = 1;
                 String data = dataReader.nextLine();
-//                System.out.println(data);
 
-                Process temp = new Process();
+                int i  = 1;
+                Process tempList = new Process();
 
                 StringTokenizer tokenized = new StringTokenizer(data, "\t");
                 while(tokenized.hasMoreTokens()) {
-//                    System.out.println(tokenized.nextToken());
                     if(i == 1)
-                        temp.setOrder(Integer.parseInt(tokenized.nextToken()));
+                        tempList.setOrder(Integer.parseInt(tokenized.nextToken()));
                     else if(i == 2)
-                        temp.setArrival(Integer.parseInt(tokenized.nextToken()));
+                        tempList.setArrival(Integer.parseInt(tokenized.nextToken()));
                     else if(i == 3)
-                        temp.setBurstTime(Integer.parseInt(tokenized.nextToken()));
+                        tempList.setBurstTime(Integer.parseInt(tokenized.nextToken()));
                     else
-                        temp.setPriority(Integer.parseInt(tokenized.nextToken()));
+                        tempList.setPriority(Integer.parseInt(tokenized.nextToken()));
 
                     i++;
                 }
-                process.add(temp);
-                System.out.println("Size: " + process.size());
-                temp.displayProcessDetails();
+                processList.add(tempList);
             }
             dataReader.close();
         } catch (FileNotFoundException e) {
