@@ -49,6 +49,10 @@ public class Main {
             System.out.println("File Not Found!");
             e.printStackTrace();
         }
+
+        FCFS algo1 = new  FCFS(processList);
+        algo1.sortProcess();
+        algo1.displayProcess();
     }
 }
 
