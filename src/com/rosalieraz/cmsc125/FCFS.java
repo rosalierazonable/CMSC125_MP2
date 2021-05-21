@@ -42,29 +42,17 @@ public class FCFS {
     }
     void displayProcess() {
         for(Process p: this.processList) {
-            System.out.println("Process Schedule: " + p.getOrder() + " ");
+            System.out.println("Process Scheduled: " + p.getOrder() + " ");
             System.out.println("Finish Time: " + p.getFinishTime() + " ");
             System.out.println("Waiting Time: " + p.getWaiting_time() + " ");
             System.out.println("Turnaround Time: " + p.getTurnaround_time() + " ");
             System.out.println();
         }
-        System.out.println("Average Turnaround time: " + this.getAvgTurnaroundTime());
-        System.out.println("Average Waiting time: " + this.getAvgWaitingTime());
+        System.out.println("===================================");
+        System.out.println("AVERAGE TURNAROUND TIME: " + this.getAvgTurnaroundTime());
+        System.out.println("AVERAGE WAITING TIME: " + this.getAvgWaitingTime());
 
     }
-//    void scheduleProcess() {
-//        System.out.println("First-Come-First-Serve Algorithm: ");
-//        System.out.println("Process\t Arrival\t Burst Time\t ");
-//        for(Process p: this.processList) {
-//            System.out.println("Process Schedule: " + p.getOrder() + " ");
-//            System.out.println("Finish Time: " + p.getFinishTime() + " ");
-//            System.out.println("Waiting Time: " + p.getWaiting_time() + " ");
-//            System.out.println("Turnaround Time: " + p.getTurnaround_time() + " ");
-//            System.out.println();
-//        }
-//        System.out.println("Average Turnaround time: " + this.getAvgTurnaroundTime());
-//        System.out.println("Average Waiting time: " + this.getAvgWaitingTime());
-//    }
 
     // Mutator Methods
     void setAvgWaitingTime(int waitingTime) {

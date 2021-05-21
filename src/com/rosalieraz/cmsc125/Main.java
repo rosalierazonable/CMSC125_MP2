@@ -2,7 +2,7 @@ package com.rosalieraz.cmsc125;
 
 /*
 *
-* CMSC 125 - MP2 : OPERATING SYSTEMS
+* COMPUTER SCIENCE 125 - MP2 : OPERATING SYSTEMS
 * Processor Management and Job Scheduling
 * FCFS, SJF, SRPT, Priority and Round-robin scheduling
 *
@@ -18,9 +18,17 @@ public class Main {
     public static void main(String[] args) {
 
         ArrayList<Process> processList = new ArrayList<>();
+        String filename, path;
 
+        System.out.print("Enter filename: ");
+        Scanner filenameScanner= new Scanner(System.in);
+
+        filename = filenameScanner.nextLine();
+        path = "C:\\Users\\Rosalie Razonable\\Downloads\\" + filename;
+
+        System.out.println();
         try {
-            File dataSet= new File("C:\\Users\\Rosalie Razonable\\Downloads\\process2.txt");
+            File dataSet= new File(path);
             Scanner dataReader = new Scanner(dataSet);
             dataReader.nextLine();
             while (dataReader.hasNextLine()) {
@@ -62,5 +70,6 @@ public class Main {
 * https://www.w3schools.com/java/java_files_read.asp
 * https://www.javatpoint.com/string-tokenizer-in-java
 * https://javagoal.com/java-sort-arraylist/
+* https://iq.opengenus.org/first-come-first-serve-cpu-scheduling/
 *
 */
