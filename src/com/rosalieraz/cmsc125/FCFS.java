@@ -62,13 +62,25 @@ public class FCFS {
         this.avgTurnaroundTime = avgTurnaroundTime;
     }
     void setTimeAttributes() {
-        this.processList.get(0).setFinishTime(this.calculateFinishTime(this.processList.get(0).getArrival(), this.processList.get(0).getBurstTime()));
-        this.processList.get(0).setTurnaround_time(this.calculateTurnaroundTime(this.processList.get(0).getFinishTime(), this.processList.get(0).getArrival()));
+        // USES THE ARRIVAL FIELD IN THE TABLE FROM THE FILE
+//        this.processList.get(0).setFinishTime(this.calculateFinishTime(this.processList.get(0).getArrival(), this.processList.get(0).getBurstTime()));
+//        this.processList.get(0).setTurnaround_time(this.calculateTurnaroundTime(this.processList.get(0).getFinishTime(), this.processList.get(0).getArrival()));
+//        this.processList.get(0).setWaiting_time(this.calculateWaitingTime(this.processList.get(0).getTurnaround_time(), this.processList.get(0).getBurstTime()));
+
+        // ASSUMING THAT ALL PROCESSES ARRIVED AT t = 0
+        this.processList.get(0).setFinishTime(this.calculateFinishTime(0, this.processList.get(0).getBurstTime()));
+        this.processList.get(0).setTurnaround_time(this.calculateTurnaroundTime(this.processList.get(0).getFinishTime(), 0));
         this.processList.get(0).setWaiting_time(this.calculateWaitingTime(this.processList.get(0).getTurnaround_time(), this.processList.get(0).getBurstTime()));
 
         for(int i = 1; i < this.numOfProcesses; i++) {
+            // USES THE ARRIVAL FIELD IN THE TABLE FROM THE FILE
+//            this.processList.get(i).setFinishTime(this.calculateFinishTime(this.processList.get(i-1).getFinishTime(), this.processList.get(i).getBurstTime()));
+//            this.processList.get(i).setTurnaround_time(this.calculateTurnaroundTime(this.processList.get(i).getFinishTime(), this.processList.get(i).getArrival()));
+//            this.processList.get(i).setWaiting_time(this.calculateWaitingTime(this.processList.get(i).getTurnaround_time(), this.processList.get(i).getBurstTime()));
+
+            // ASSUMING THAT ALL PROCESSES ARRIVED AT t = 0
             this.processList.get(i).setFinishTime(this.calculateFinishTime(this.processList.get(i-1).getFinishTime(), this.processList.get(i).getBurstTime()));
-            this.processList.get(i).setTurnaround_time(this.calculateTurnaroundTime(this.processList.get(i).getFinishTime(), this.processList.get(i).getArrival()));
+            this.processList.get(i).setTurnaround_time(this.calculateTurnaroundTime(this.processList.get(i).getFinishTime(), 0));
             this.processList.get(i).setWaiting_time(this.calculateWaitingTime(this.processList.get(i).getTurnaround_time(), this.processList.get(i).getBurstTime()));
         }
 
