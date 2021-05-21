@@ -1,11 +1,12 @@
 package com.rosalieraz.cmsc125;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class FCFS {
-    private int numOfProcesses; // number of processes
-    private ArrayList<Process> processList = new ArrayList<>();
+    private final int numOfProcesses; // number of processes
+    private final ArrayList<Process> processList;
+    private float avgWaitingTime;
+    private float avgTurnaroundTime;
 
     FCFS(ArrayList<Process> pList) {
         this.processList = pList;
@@ -17,10 +18,9 @@ public class FCFS {
         return turnaround_time - burst_time;
     }
     int calculateTurnaroundTime(int finish_time, int arrival_time) {
-        return finish_time + arrival_time;
+        return finish_time - arrival_time;
     }
     int calculateFinishTime(int burst_time, int finish_time) {
-        // finish_time (i - 1)
         return burst_time + finish_time; // for i = 0, this will be arrival time + burst time
     }
     int calculateAvgWaitingTime() {
@@ -28,24 +28,71 @@ public class FCFS {
         for(Process  p: this.processList) {
             sum+=p.getWaiting_time();
         }
-        return sum/this.processList.size();
+        return sum / this.processList.size();
     }
     int calculateAVgTurnaroundTime() {
         int sum = 0;
         for(Process  p: this.processList) {
             sum+=p.getTurnaround_time();
         }
-        return sum/this.processList.size();
+        return sum / this.processList.size();
     }
     void sortProcess() {
         this.processList.sort(new ArrivalComparator());
     }
     void displayProcess() {
         for(Process p: this.processList) {
-            System.out.print(p.getOrder() + " ");
+            System.out.println("Process Schedule: " + p.getOrder() + " ");
+            System.out.println("Finish Time: " + p.getFinishTime() + " ");
+            System.out.println("Waiting Time: " + p.getWaiting_time() + " ");
+            System.out.println("Turnaround Time: " + p.getTurnaround_time() + " ");
+            System.out.println();
         }
-        System.out.println();
+        System.out.println("Average Turnaround time: " + this.getAvgTurnaroundTime());
+        System.out.println("Average Waiting time: " + this.getAvgWaitingTime());
+
+    }
+//    void scheduleProcess() {
+//        System.out.println("First-Come-First-Serve Algorithm: ");
+//        System.out.println("Process\t Arrival\t Burst Time\t ");
+//        for(Process p: this.processList) {
+//            System.out.println("Process Schedule: " + p.getOrder() + " ");
+//            System.out.println("Finish Time: " + p.getFinishTime() + " ");
+//            System.out.println("Waiting Time: " + p.getWaiting_time() + " ");
+//            System.out.println("Turnaround Time: " + p.getTurnaround_time() + " ");
+//            System.out.println();
+//        }
+//        System.out.println("Average Turnaround time: " + this.getAvgTurnaroundTime());
+//        System.out.println("Average Waiting time: " + this.getAvgWaitingTime());
+//    }
+
+    // Mutator Methods
+    void setAvgWaitingTime(int waitingTime) {
+        this.avgWaitingTime = waitingTime;
+    }
+    void setAvgTurnaroundTime(int avgTurnaroundTime) {
+        this.avgTurnaroundTime = avgTurnaroundTime;
+    }
+    void setTimeAttributes() {
+        this.processList.get(0).setFinishTime(this.calculateFinishTime(this.processList.get(0).getArrival(), this.processList.get(0).getBurstTime()));
+        this.processList.get(0).setTurnaround_time(this.calculateTurnaroundTime(this.processList.get(0).getFinishTime(), this.processList.get(0).getArrival()));
+        this.processList.get(0).setWaiting_time(this.calculateWaitingTime(this.processList.get(0).getTurnaround_time(), this.processList.get(0).getBurstTime()));
+
+        for(int i = 1; i < this.numOfProcesses; i++) {
+            this.processList.get(i).setFinishTime(this.calculateFinishTime(this.processList.get(i-1).getFinishTime(), this.processList.get(i).getBurstTime()));
+            this.processList.get(i).setTurnaround_time(this.calculateTurnaroundTime(this.processList.get(i).getFinishTime(), this.processList.get(i).getArrival()));
+            this.processList.get(i).setWaiting_time(this.calculateWaitingTime(this.processList.get(i).getTurnaround_time(), this.processList.get(i).getBurstTime()));
+        }
+
+        this.setAvgWaitingTime(this.calculateAvgWaitingTime());
+        this.setAvgTurnaroundTime(this.calculateAVgTurnaroundTime());
     }
 
-    //
+    // Accessor Methods
+    float getAvgWaitingTime() {
+        return this.avgWaitingTime;
+    }
+    float getAvgTurnaroundTime() {
+        return this.avgTurnaroundTime;
+    }
 }

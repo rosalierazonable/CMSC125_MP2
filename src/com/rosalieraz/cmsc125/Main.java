@@ -20,7 +20,7 @@ public class Main {
         ArrayList<Process> processList = new ArrayList<>();
 
         try {
-            File dataSet= new File("C:\\Users\\Rosalie Razonable\\Downloads\\process1.txt");
+            File dataSet= new File("C:\\Users\\Rosalie Razonable\\Downloads\\process2.txt");
             Scanner dataReader = new Scanner(dataSet);
             dataReader.nextLine();
             while (dataReader.hasNextLine()) {
@@ -32,7 +32,7 @@ public class Main {
                 StringTokenizer tokenized = new StringTokenizer(data, "\t");
                 while(tokenized.hasMoreTokens()) {
                     if(i == 1)
-                        tempList.setOrder(Integer.parseInt(tokenized.nextToken()));
+                        tempList.setOrder(tokenized.nextToken());
                     else if(i == 2)
                         tempList.setArrival(Integer.parseInt(tokenized.nextToken()));
                     else if(i == 3)
@@ -50,9 +50,10 @@ public class Main {
             e.printStackTrace();
         }
 
-        FCFS algo1 = new  FCFS(processList);
-        algo1.sortProcess();
-        algo1.displayProcess();
+        FCFS fcfsAlgo = new  FCFS(processList);
+        fcfsAlgo.sortProcess();
+        fcfsAlgo.setTimeAttributes();
+        fcfsAlgo.displayProcess();
     }
 }
 
@@ -60,5 +61,6 @@ public class Main {
 * REFERENCES:
 * https://www.w3schools.com/java/java_files_read.asp
 * https://www.javatpoint.com/string-tokenizer-in-java
+* https://javagoal.com/java-sort-arraylist/
 *
 */
