@@ -27,6 +27,7 @@ public class Main {
         path = "C:\\Users\\Rosalie Razonable\\Downloads\\" + filename;
 
         System.out.println();
+        // File reading and parsing
         try {
             File dataSet= new File(path);
             Scanner dataReader = new Scanner(dataSet);
@@ -58,10 +59,18 @@ public class Main {
             e.printStackTrace();
         }
 
+        // First-Come-First-Serve Scheduling
         FCFS fcfsAlgo = new  FCFS(processList);
         fcfsAlgo.sortProcess();
         fcfsAlgo.setTimeAttributes();
         fcfsAlgo.displayProcess();
+
+        // Shortest Job First Scheduling
+        SJF sjfAlgo = new SJF(processList);
+        sjfAlgo.sortProcessByAT();
+        sjfAlgo.sortProcessByBT();
+        sjfAlgo.setTimeAttributes();
+        sjfAlgo.displayProcess();
     }
 }
 
