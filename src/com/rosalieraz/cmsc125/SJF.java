@@ -43,8 +43,9 @@ public class SJF {
         this.processList.sort(new BurstTimeComparator());
     } // sort process by burst time
     void displayProcess() {
-        System.out.println("------ SHORTEST JOB FIRST SCHEDULING ------");
+        System.out.println("--------------------------------------- SHORTEST JOB FIRST SCHEDULING ---------------------------------------");
         System.out.println();
+        this.displayGantChart();
         for(Process p: this.processList) {
             System.out.println("Process Scheduled: " + p.getOrder());
             System.out.println("Burst Time: " + p.getBurstTime());
@@ -56,6 +57,15 @@ public class SJF {
         System.out.println("=================================");
         System.out.println("AVERAGE TURNAROUND TIME: " + this.avgTurnaroundTime);
         System.out.println("AVERAGE WAITING TIME: " + this.avgWaitingTime);
+    }
+    void displayGantChart() {
+        System.out.println("Gant Chart:");
+        for(Process p: this.processList) {
+            for(int i = 0; i < p.getBurstTime(); i++)
+                System.out.print("[ " + p.getOrder() + " ]");
+        }
+        System.out.println();
+        System.out.println();
     }
 
     // Mutator Methods
