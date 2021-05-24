@@ -61,14 +61,14 @@ public class Main {
 
         // First-Come-First-Serve Scheduling
         FCFS fcfsAlgo = new  FCFS(processList);
-        fcfsAlgo.sortProcess();
+        fcfsAlgo.sortProcess(); // sort by Arrival
         fcfsAlgo.setTimeAttributes();
         fcfsAlgo.displayProcess();
 
         // Shortest Job First Scheduling
         SJF sjfAlgo = new SJF(processList);
-        sjfAlgo.sortProcessByAT();
-        sjfAlgo.sortProcessByBT();
+        sjfAlgo.sortProcessByAT(); // sort by Arrival Time
+        sjfAlgo.sortProcessByBT(); // sort by Burst Time
         sjfAlgo.setTimeAttributes();
         sjfAlgo.displayProcess();
     }
@@ -80,5 +80,5 @@ public class Main {
 * https://www.javatpoint.com/string-tokenizer-in-java
 * https://javagoal.com/java-sort-arraylist/
 * https://iq.opengenus.org/first-come-first-serve-cpu-scheduling/
-*
+* https://www.geeksforgeeks.org/program-for-shortest-job-first-or-sjf-cpu-scheduling-set-1-non-preemptive/
 */
