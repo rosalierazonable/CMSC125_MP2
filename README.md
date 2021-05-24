@@ -11,3 +11,18 @@ Implement the FCFS, SJF, SRPT, Priority and Round-robin scheduling. Sample data 
 - For round-robin scheduling, assume a uniform time slice of 4 millisecond.
 
 Display the waiting time for each process for every algorithm, as well as their average computing time. Also, perform an algorithm evaluation, based on the datasets given to you.
+
+## Additional Features
+
+- File Reading
+- Display of Gant Chart
+- Algorithm Evaluation
+
+## Data Structure/s and other concepts used
+
+- Array List
+- Comparator Interface
+- OOP 
+
+## Run Code Here: 
+https://replit.com/@rsraz/Process-Scheduling
