@@ -53,7 +53,7 @@ public class SJF {
             System.out.println("Waiting Time: " + p.getWaiting_time());
             System.out.println();
         }
-        System.out.println("=======================================");
+        System.out.println("=================================");
         System.out.println("AVERAGE TURNAROUND TIME: " + this.avgTurnaroundTime);
         System.out.println("AVERAGE WAITING TIME: " + this.avgWaitingTime);
     }
