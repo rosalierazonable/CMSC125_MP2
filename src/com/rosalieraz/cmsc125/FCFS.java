@@ -41,6 +41,8 @@ public class FCFS {
         this.processList.sort(new ArrivalComparator());
     }
     void displayProcess() {
+        System.out.println("------ FIRST-COME-FIRST-SERVE SCHEDULING ------");
+        System.out.println();
         for(Process p: this.processList) {
             System.out.println("Process Scheduled: " + p.getOrder() + " ");
             System.out.println("Finish Time: " + p.getFinishTime() + " ");
@@ -51,7 +53,7 @@ public class FCFS {
         System.out.println("===================================");
         System.out.println("AVERAGE TURNAROUND TIME: " + this.getAvgTurnaroundTime());
         System.out.println("AVERAGE WAITING TIME: " + this.getAvgWaitingTime());
-
+        System.out.println();
     }
 
     // Mutator Methods
