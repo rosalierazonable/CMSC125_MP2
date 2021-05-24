@@ -41,8 +41,9 @@ public class FCFS {
         this.processList.sort(new ArrivalComparator());
     }
     void displayProcess() {
-        System.out.println("------ FIRST-COME-FIRST-SERVE SCHEDULING ------");
+        System.out.println("--------------------------------------- FIRST-COME-FIRST-SERVE SCHEDULING ---------------------------------------");
         System.out.println();
+        this.displayGantChart();
         for(Process p: this.processList) {
             System.out.println("Process Scheduled: " + p.getOrder() + " ");
             System.out.println("Finish Time: " + p.getFinishTime() + " ");
@@ -53,6 +54,15 @@ public class FCFS {
         System.out.println("===================================");
         System.out.println("AVERAGE TURNAROUND TIME: " + this.getAvgTurnaroundTime());
         System.out.println("AVERAGE WAITING TIME: " + this.getAvgWaitingTime());
+        System.out.println();
+    }
+    void displayGantChart() {
+        System.out.println("Gant Chart:");
+        for(Process p: this.processList) {
+            for(int i = 0; i < p.getBurstTime(); i++)
+                System.out.print("[ " + p.getOrder() + " ]");
+        }
+        System.out.println();
         System.out.println();
     }
 
