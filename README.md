@@ -16,7 +16,6 @@ Display the waiting time for each process for every algorithm, as well as their 
 
 - File Reading
 - Display of Gant Chart
-- Algorithm Evaluation
 
 ## Data Structure/s and other concepts used
 
