@@ -74,6 +74,9 @@ public class FCFS {
         this.avgTurnaroundTime = avgTurnaroundTime;
     }
     void setTimeAttributes() {
+
+        this.sortProcess(); // sort process list by arrival time
+
         // USES THE ARRIVAL FIELD IN THE TABLE FROM THE FILE
 //        this.processList.get(0).setFinishTime(this.calculateFinishTime(this.processList.get(0).getArrival(), this.processList.get(0).getBurstTime()));
 //        this.processList.get(0).setTurnaround_time(this.calculateTurnaroundTime(this.processList.get(0).getFinishTime(), this.processList.get(0).getArrival()));
