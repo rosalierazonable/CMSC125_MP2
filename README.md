@@ -22,7 +22,6 @@ Display the waiting time for each process for every algorithm, as well as their 
 - Array List
 - Queue
 - Comparator Interface
-- OOP 
 
 ## Run Code Here: 
 https://replit.com/@rsraz/Process-Scheduling
