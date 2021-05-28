@@ -1,5 +1,9 @@
 package com.rosalieraz.cmsc125;
 
+/*
+ * NON-PREEMPTIVE PRIORITY SCHEDULING
+ */
+
 import java.util.*;
 
 public class Priority {

@@ -1,5 +1,10 @@
 package com.rosalieraz.cmsc125;
 
+/*
+ * SHORTEST JOB FIRST SCHEDULING
+ */
+
+
 import java.util.ArrayList;
 
 public class SJF {

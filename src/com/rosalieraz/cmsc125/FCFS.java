@@ -1,5 +1,9 @@
 package com.rosalieraz.cmsc125;
 
+/*
+ * FIRST COME FIRST SERVE SCHEDULING
+ */
+
 import java.util.ArrayList;
 
 public class FCFS {

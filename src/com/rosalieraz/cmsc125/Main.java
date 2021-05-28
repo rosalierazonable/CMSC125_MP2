@@ -77,6 +77,10 @@ public class Main {
         Priority priorityAlgo = new Priority(processList);
         priorityAlgo.setTimeAttributes();
         priorityAlgo.displayProcess();
+
+        // Round Robin Scheduling
+        RR rrAlgo = new RR(processList);
+        rrAlgo.displayProcess();
     }
 }
 
@@ -87,4 +91,5 @@ public class Main {
 * https://javagoal.com/java-sort-arraylist/
 * https://iq.opengenus.org/first-come-first-serve-cpu-scheduling/
 * https://www.geeksforgeeks.org/program-for-shortest-job-first-or-sjf-cpu-scheduling-set-1-non-preemptive/
+* https://www.javatpoint.com/os-round-robin-scheduling-algorithm
 */
