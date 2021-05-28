@@ -87,7 +87,7 @@ public class SRPT {
 
         return gantArr;
     }
-    void displayProcessSRPT() {
+    void displayProcess() {
         System.out.println("----------------------------- SHORTEST REMAINING TIME FIRST SCHEDULING -----------------------------");
         System.out.println();
 
