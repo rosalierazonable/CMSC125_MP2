@@ -71,7 +71,7 @@ public class Main {
 
         // Shortest Remaining Process Time First Scheduling
         SRPT srptAlgo = new SRPT(processList);
-        srptAlgo.displayProcessSRPT();
+        srptAlgo.displayProcess();
 
         // Non-Preemptive Priority Scheduling
         Priority priorityAlgo = new Priority(processList);
