@@ -45,15 +45,15 @@ public class FCFS {
         System.out.println();
         this.displayGantChart();
         for(Process p: this.processList) {
-            System.out.println("Process Scheduled: " + p.getOrder() + " ");
-            System.out.println("Finish Time: " + p.getFinishTime() + " ");
-            System.out.println("Waiting Time: " + p.getWaiting_time() + " ");
-            System.out.println("Turnaround Time: " + p.getTurnaround_time() + " ");
+            System.out.println("Process Scheduled: " + p.getOrder());
+            System.out.println("Finish Time: " + p.getFinishTime() + " units");
+            System.out.println("Waiting Time: " + p.getWaiting_time() + " units");
+            System.out.println("Turnaround Time: " + p.getTurnaround_time() + " units");
             System.out.println();
         }
         System.out.println("===================================");
-        System.out.println("AVERAGE TURNAROUND TIME: " + this.getAvgTurnaroundTime());
-        System.out.println("AVERAGE WAITING TIME: " + this.getAvgWaitingTime());
+        System.out.println("AVERAGE TURNAROUND TIME: " + this.getAvgTurnaroundTime() + " units");
+        System.out.println("AVERAGE WAITING TIME: " + this.getAvgWaitingTime() + " units");
         System.out.println();
     }
     void displayGantChart() {

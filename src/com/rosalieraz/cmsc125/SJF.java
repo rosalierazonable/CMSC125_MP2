@@ -39,15 +39,15 @@ public class SJF {
         this.displayGantChart();
         for(Process p: this.processList) {
             System.out.println("Process Scheduled: " + p.getOrder());
-            System.out.println("Burst Time: " + p.getBurstTime());
-            System.out.println("Finish Time: " + p.getFinishTime());
-            System.out.println("Turnaround Time: " + p.getTurnaround_time());
-            System.out.println("Waiting Time: " + p.getWaiting_time());
+            System.out.println("Burst Time: " + p.getBurstTime() + " units");
+            System.out.println("Finish Time: " + p.getFinishTime() + " units");
+            System.out.println("Turnaround Time: " + p.getTurnaround_time() + " units");
+            System.out.println("Waiting Time: " + p.getWaiting_time() + " units");
             System.out.println();
         }
         System.out.println("=================================");
-        System.out.println("AVERAGE TURNAROUND TIME: " + this.avgTurnaroundTime);
-        System.out.println("AVERAGE WAITING TIME: " + this.avgWaitingTime);
+        System.out.println("AVERAGE TURNAROUND TIME: " + this.avgTurnaroundTime + " units");
+        System.out.println("AVERAGE WAITING TIME: " + this.avgWaitingTime + " units");
         System.out.println();
     }
     void displayGantChart() {

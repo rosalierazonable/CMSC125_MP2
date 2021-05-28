@@ -90,15 +90,15 @@ public class SRPT {
         for(Process p: this.processList) {
             System.out.println();
             System.out.println("Process Scheduled: " + p.getOrder());
-            System.out.println("Arrival Time: " + p.getArrival());
-            System.out.println("Burst Time: " + p.getBurstTime());
-            System.out.println("Finish Time: " + p.getFinishTime());
-            System.out.println("Turnaround Time: " + p.getTurnaround_time());
-            System.out.println("Waiting Time: " + p.getWaiting_time());
+            System.out.println("Arrival Time: " + p.getArrival() + " units");
+            System.out.println("Burst Time: " + p.getBurstTime() + " units");
+            System.out.println("Finish Time: " + p.getFinishTime() + " units");
+            System.out.println("Turnaround Time: " + p.getTurnaround_time() + " units");
+            System.out.println("Waiting Time: " + p.getWaiting_time() + " units");
         }
         System.out.println("=================================");
-        System.out.println("AVERAGE TURNAROUND TIME: " + this.avgTurnaroundTime);
-        System.out.println("AVERAGE WAITING TIME: " + this.avgWaitingTime);
+        System.out.println("AVERAGE TURNAROUND TIME: " + this.avgTurnaroundTime + " units");
+        System.out.println("AVERAGE WAITING TIME: " + this.avgWaitingTime + " units");
     }
     void displayGant(Queue<String>  gant) {
         System.out.println("Gant Chart:" );
