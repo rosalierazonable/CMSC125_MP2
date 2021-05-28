@@ -13,15 +13,6 @@ public class SJF {
 
     // Helper Methods
     //sort process by arrival time
-    int calculateWaitingTime(int turnaround_time, int burst_time) {
-        return turnaround_time - burst_time;
-    }
-    int calculateTurnaroundTime(int finish_time, int arrival_time) {
-        return finish_time - arrival_time;
-    }
-    int calculateFinishTime(int burst_time, int finish_time) {
-        return burst_time + finish_time; // for i = 0, this will be arrival time + burst time
-    }
     float calculateAvgWaitingTime() {
         float sum = 0;
         for(Process  p: this.processList) {
@@ -57,6 +48,7 @@ public class SJF {
         System.out.println("=================================");
         System.out.println("AVERAGE TURNAROUND TIME: " + this.avgTurnaroundTime);
         System.out.println("AVERAGE WAITING TIME: " + this.avgWaitingTime);
+        System.out.println();
     }
     void displayGantChart() {
         System.out.println("Gant Chart:");
@@ -76,25 +68,13 @@ public class SJF {
         this.avgTurnaroundTime = avgTurnaroundTime;
     }
     void setTimeAttributes() {
-        // When the arrival time is not assumed to be 0 for all processes, uncomment this
-        /*this.processList.get(0).setFinishTime(this.calculateFinishTime(this.processList.get(0).getBurstTime(), 0 *//*arrival time at t = 0*//*));
-        this.processList.get(0).setTurnaround_time(this.calculateTurnaroundTime(this.processList.get(0).getFinishTime(), 0));
-        this.processList.get(0).setWaiting_time(this.calculateWaitingTime(this.processList.get(0).getTurnaround_time(), this.processList.get(0).getBurstTime()));
 
-        for(int i = 1; i < this.processList.size(); i++) {
-            if(this.processList.get(i).getArrival() > this.processList.get(i-1).getFinishTime())
-                this.processList.get(i).setFinishTime(this.processList.get(i).getBurstTime() + this.processList.get(i).getArrival());
-            else
-                this.processList.get(i).setFinishTime(this.processList.get(i-1).getFinishTime() + this.processList.get(i).getBurstTime());
-
-            this.processList.get(i).setTurnaround_time(this.processList.get(i).getFinishTime() - this.processList.get(i).getArrival());
-            this.processList.get(i).setWaiting_time(this.processList.get(i).getTurnaround_time() - this.processList.get(i).getBurstTime());
-        }*/
+        this.sortProcessByAT(); // sort process list by arrival time
+        this.sortProcessByBT(); // sort process list by burst time
 
         this.processList.get(0).setFinishTime(this.processList.get(0).getBurstTime());
         this.processList.get(0).setTurnaround_time(this.processList.get(0).getBurstTime());
         this.processList.get(0).setWaiting_time(0);
-
 
         for(int i = 1; i < this.processList.size(); i++) {
             this.processList.get(i).setTurnaround_time(this.processList.get(i-1).getFinishTime() + this.processList.get(i).getBurstTime());
@@ -104,13 +84,5 @@ public class SJF {
 
         this.setAvgWaitingTime(this.calculateAvgWaitingTime());
         this.setAvgTurnaroundTime(this.calculateAVgTurnaroundTime());
-    }
-
-    // Accessor Methods
-    float getAvgWaitingTime() {
-        return this.avgWaitingTime;
-    }
-    float getAvgTurnaroundTime() {
-        return this.avgTurnaroundTime;
     }
 }
