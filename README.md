@@ -21,6 +21,7 @@ Display the waiting time for each process for every algorithm, as well as their 
 ## Data Structure/s and other concepts used
 
 - Array List
+- Queue
 - Comparator Interface
 - OOP 
 
