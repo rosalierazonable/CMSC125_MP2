@@ -4,7 +4,6 @@
   * SHORTEST REMAINING PROCESSING TIME SCHEDULING
   */
 
-
 import java.util.*;
 
 public class SRPT {

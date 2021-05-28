@@ -45,7 +45,7 @@ public class Priority {
         this.displayGantChart();
         for(Process p: this.processList) {
             System.out.println("Process Scheduled: " + p.getOrder());
-            System.out.println("Priority: " + p.getPriority() + " units");
+            System.out.println("Priority: " + p.getPriority());
             System.out.println("Burst Time: " + p.getBurstTime() + " units");
             System.out.println("Finish Time: " + p.getFinishTime() + " units");
             System.out.println("Turnaround Time: " + p.getTurnaround_time() + " units");
