@@ -61,20 +61,22 @@ public class Main {
 
         // First-Come-First-Serve Scheduling
         FCFS fcfsAlgo = new  FCFS(processList);
-//        fcfsAlgo.sortProcess(); // sort by Arrival
         fcfsAlgo.setTimeAttributes();
         fcfsAlgo.displayProcess();
 
         // Shortest Job First Scheduling
         SJF sjfAlgo = new SJF(processList);
-//        sjfAlgo.sortProcessByAT(); // sort by Arrival Time
-//        sjfAlgo.sortProcessByBT(); // sort by Burst Time
         sjfAlgo.setTimeAttributes();
         sjfAlgo.displayProcess();
 
         // Shortest Remaining Process Time First Scheduling
         SRPT srptAlgo = new SRPT(processList);
         srptAlgo.displayProcessSRPT();
+
+        // Non-Preemptive Priority Scheduling
+        Priority priorityAlgo = new Priority(processList);
+        priorityAlgo.setTimeAttributes();
+        priorityAlgo.displayProcess();
     }
 }
 
