@@ -27,19 +27,19 @@ public class FCFS {
     int calculateFinishTime(int burst_time, int finish_time) {
         return burst_time + finish_time; // for i = 0, this will be arrival time + burst time
     }
-    int calculateAvgWaitingTime() {
+    float calculateAvgWaitingTime() {
         int sum = 0;
         for(Process  p: this.processList) {
             sum+=p.getWaiting_time();
         }
-        return sum / this.processList.size();
+        return (float) sum / this.processList.size();
     }
-    int calculateAVgTurnaroundTime() {
+    float calculateAVgTurnaroundTime() {
         int sum = 0;
         for(Process  p: this.processList) {
             sum+=p.getTurnaround_time();
         }
-        return sum / this.processList.size();
+        return (float) sum / this.processList.size();
     }
     void sortProcess() {
         this.processList.sort(new ArrivalComparator());
@@ -71,10 +71,10 @@ public class FCFS {
     }
 
     // Mutator Methods
-    void setAvgWaitingTime(int waitingTime) {
+    void setAvgWaitingTime(float waitingTime) {
         this.avgWaitingTime = waitingTime;
     }
-    void setAvgTurnaroundTime(int avgTurnaroundTime) {
+    void setAvgTurnaroundTime(float avgTurnaroundTime) {
         this.avgTurnaroundTime = avgTurnaroundTime;
     }
     void setTimeAttributes() {

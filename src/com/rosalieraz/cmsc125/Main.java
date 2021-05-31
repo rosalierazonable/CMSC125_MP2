@@ -96,5 +96,5 @@ public class Main {
 * https://iq.opengenus.org/first-come-first-serve-cpu-scheduling/
 * https://www.geeksforgeeks.org/program-for-shortest-job-first-or-sjf-cpu-scheduling-set-1-non-preemptive/
 * https://www.javatpoint.com/os-round-robin-scheduling-algorithm
-* https://www.youtube.com/watch?v=_QcX99B-zbU&ab_channel=Jenny%27slecturesCS%2FITNET%26JRF
+* https://www.youtube.com/watch?v=_QcX99B-zbU&ab_channel=Jenny%27slecturesCS%2FITNET%26JRF (Detailed explanation of SRPT)
 */
