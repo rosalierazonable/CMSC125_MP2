@@ -53,7 +53,9 @@ import java.util.*;
         return -1;
     }
 
-    Queue<String> preempt(){
+   /*
+   // This algorithm checks every unit of time if there is a new process in the ready queue with lesser burst time (which is a result of my misinterpretation)
+   Queue<String> preempt(){
         int currFT = 0, idx;
         Queue<Integer> isComplete = new LinkedList<>();
         Queue<String> gantArr = new LinkedList<>();
@@ -104,7 +106,77 @@ import java.util.*;
         this.calculateAvgTT();
 
         return gantArr;
-    }
+    }*/
+
+     // This algo check each unit of time, and whether there is a new process in the ready queue with less updatedBT
+     // however, when all the processes have already been accommodated (in other words loop until the highest arrival time among the processes)
+     // The ready queue shall then be sorted and scheduled as with SJF algorithm
+     Queue<String> preEmpt() {
+       int lastAT, idx, ctr = 0;
+       Queue<String> gantArr = new LinkedList<>();
+       Queue<Integer> isComplete = new LinkedList<>();
+       ArrayList<Integer> aT;
+
+       this.sortProcessByAT(); // sort process list by arrival time
+
+       lastAT = this.processList.get(this.processList.size()-1).getArrival(); // get the largest arrival time
+       idx = this.processList.get(0).getArrival(); // set the first idx to the first arrival time
+       Process currProcess = this.processList.get(0); // get current process
+       ArrayList<Process> readyPlist = new ArrayList<>();
+
+       readyPlist.add(currProcess);
+
+       while(idx <= lastAT) {
+
+           if(!isComplete.contains(currProcess.getUID())) {
+               aT = this.getIndicesOfAT(idx, currProcess.getUID()); // get all indices of the process with the indicated arrival time
+
+               if(!aT.isEmpty()) {
+                   for (Integer ind: aT) {
+                       readyPlist.add(this.processList.get(ind));
+                       readyPlist.sort(new UpdatedBTComparator());
+                   }
+               }
+
+               if(currProcess.getUpdatedBT() > readyPlist.get(0).getUpdatedBT()) {
+                   gantArr.add(readyPlist.get(0).getOrder());
+                   readyPlist.get(0).setUpdatedBT(readyPlist.get(0).getUpdatedBT()-1);
+
+                   if(readyPlist.get(0).getUpdatedBT() == 0) {
+                       this.processList.get(this.getIdxByUID(readyPlist.get(0).getUID())).setFinishTime(idx+1);
+                       isComplete.add(readyPlist.get(0).getUID());
+                       readyPlist.remove(0);
+                   } else {
+                       currProcess = readyPlist.get(0);
+                       this.processList.get(this.getIdxByUID(currProcess.getUID())).setFinishTime(idx+1);
+                   }
+               } else {
+                   this.processList.get(this.getIdxByUID(currProcess.getUID())).setFinishTime(idx+1);
+                   currProcess.setUpdatedBT(currProcess.getUpdatedBT()-1);
+                   gantArr.add(currProcess.getOrder());
+               }
+           }
+           idx++;
+       }
+
+       for (Process p: readyPlist) {
+           idx += p.getUpdatedBT();
+           this.processList.get(this.getIdxByUID(p.getUID())).setFinishTime(idx);
+           for (int i = 0; i < p.getUpdatedBT(); i++) {
+               gantArr.add(p.getOrder());
+           }
+       }
+
+       for (Process p: this.processList) {
+           p.setTurnaround_time(p.getFinishTime() - p.getArrival());
+           p.setWaiting_time(p.getTurnaround_time() - p.getBurstTime());
+       }
+
+       this.calculateAvgWT();
+       this.calculateAvgTT();
+
+       return gantArr;
+   }
     void displayProcess() {
         System.out.println("----------------------------- SHORTEST REMAINING TIME FIRST SCHEDULING -----------------------------");
         System.out.println();
@@ -123,79 +195,11 @@ import java.util.*;
         System.out.println("AVERAGE TURNAROUND TIME: " + this.avgTurnaroundTime + " units");
         System.out.println("AVERAGE WAITING TIME: " + this.avgWaitingTime + " units");
     }
-    void displayGant(Queue<String>  gant) {
+    void displayGant(Queue<String> gant) {
         System.out.println("Gant Chart:" );
         for(String s: gant) {
             System.out.print("[ " + s + " ]");
         }
         System.out.println();
-    }
-
-    Queue<String> preEmpt() {
-//    void preEmpt() {
-        int lastAT, idx, ctr = 0;
-        Queue<String> gantArr = new LinkedList<>();
-        Queue<Integer> isComplete = new LinkedList<>();
-        ArrayList<Integer> aT;
-
-        this.sortProcessByAT(); // sort process list by arrival time
-
-        lastAT = this.processList.get(this.processList.size()-1).getArrival(); // get the largest arrival time
-        idx = this.processList.get(0).getArrival(); // set the first idx to the first arrival time
-        Process currProcess = this.processList.get(0); // get current process
-        ArrayList<Process> readyPlist = new ArrayList<>();
-
-        readyPlist.add(currProcess);
-
-        while(idx <= lastAT) {
-
-            if(!isComplete.contains(currProcess.getUID())) {
-                aT = this.getIndicesOfAT(idx, currProcess.getUID()); // get all indices of the process with the indicated arrival time
-
-                if(!aT.isEmpty()) {
-                    for (Integer ind: aT) {
-                        readyPlist.add(this.processList.get(ind));
-                        readyPlist.sort(new UpdatedBTComparator());
-                    }
-                }
-
-                if(currProcess.getUpdatedBT() > readyPlist.get(0).getUpdatedBT()) {
-                    gantArr.add(readyPlist.get(0).getOrder());
-                    readyPlist.get(0).setUpdatedBT(readyPlist.get(0).getUpdatedBT()-1);
-
-                    if(readyPlist.get(0).getUpdatedBT() == 0) {
-                        this.processList.get(this.getIdxByUID(readyPlist.get(0).getUID())).setFinishTime(idx+1);
-                        isComplete.add(readyPlist.get(0).getUID());
-                        readyPlist.remove(0);
-                    } else {
-                        currProcess = readyPlist.get(0);
-                        this.processList.get(this.getIdxByUID(currProcess.getUID())).setFinishTime(idx+1);
-                    }
-                } else {
-                    this.processList.get(this.getIdxByUID(currProcess.getUID())).setFinishTime(idx+1);
-                    currProcess.setUpdatedBT(currProcess.getUpdatedBT()-1);
-                    gantArr.add(currProcess.getOrder());
-                }
-            }
-            idx++;
-        }
-
-        for (Process p: readyPlist) {
-            idx += p.getUpdatedBT();
-            this.processList.get(this.getIdxByUID(p.getUID())).setFinishTime(idx);
-            for (int i = 0; i < p.getUpdatedBT(); i++) {
-                gantArr.add(p.getOrder());
-            }
-        }
-
-        for (Process p: this.processList) {
-            p.setTurnaround_time(p.getFinishTime() - p.getArrival());
-            p.setWaiting_time(p.getTurnaround_time() - p.getBurstTime());
-        }
-
-        this.calculateAvgWT();
-        this.calculateAvgTT();
-
-        return gantArr;
     }
 }
