@@ -41,12 +41,13 @@ public class Main {
                 StringTokenizer tokenized = new StringTokenizer(data, "\t");
                 while(tokenized.hasMoreTokens()) {
                     if(i == 1)
-                        tempList.setOrder(tokenized.nextToken());
+                        tempList.setOrder(Integer.parseInt(tokenized.nextToken()));
                     else if(i == 2)
                         tempList.setArrival(Integer.parseInt(tokenized.nextToken()));
-                    else if(i == 3)
+                    else if(i == 3) {
                         tempList.setBurstTime(Integer.parseInt(tokenized.nextToken()));
-                    else
+                        tempList.setUpdatedBT(tempList.getBurstTime());
+                    } else
                         tempList.setPriority(Integer.parseInt(tokenized.nextToken()));
 
                     i++;
@@ -81,6 +82,7 @@ public class Main {
         // Round Robin Scheduling
         RR rrAlgo = new RR(processList);
         rrAlgo.displayProcess();
+
     }
 }
 
@@ -89,7 +91,10 @@ public class Main {
 * https://www.w3schools.com/java/java_files_read.asp
 * https://www.javatpoint.com/string-tokenizer-in-java
 * https://javagoal.com/java-sort-arraylist/
+*
+* (For Algorithms)
 * https://iq.opengenus.org/first-come-first-serve-cpu-scheduling/
 * https://www.geeksforgeeks.org/program-for-shortest-job-first-or-sjf-cpu-scheduling-set-1-non-preemptive/
 * https://www.javatpoint.com/os-round-robin-scheduling-algorithm
+* https://www.youtube.com/watch?v=_QcX99B-zbU&ab_channel=Jenny%27slecturesCS%2FITNET%26JRF
 */
