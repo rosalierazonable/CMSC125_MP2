@@ -1,7 +1,8 @@
 package com.rosalieraz.cmsc125;
 
 public class Process {
-    private String id;
+    private int updatedBT;
+    private int id;
     private int arrival;
     private int burst_time;
     private int finish_time;
@@ -10,8 +11,11 @@ public class Process {
     private int priority;
 
     // Mutator Methods
-    void setOrder(String order) {
-        this.id = "P"+order;
+    void setOrder(int order) {
+        this.id = order;
+    }
+    void setUpdatedBT(int uBT) {
+        this.updatedBT = uBT;
     }
     void setArrival(int arrival) {
         this.arrival = arrival;
@@ -33,8 +37,14 @@ public class Process {
     }
 
     // Accessor Methods
-    String getOrder() {
+    int getUID() {
         return this.id;
+    }
+    String getOrder() {
+        return "P" + this.id;
+    }
+    int getUpdatedBT() {
+        return this.updatedBT;
     }
     int getArrival() {
         return this.arrival;
