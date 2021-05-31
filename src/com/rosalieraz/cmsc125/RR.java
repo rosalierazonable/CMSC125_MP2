@@ -39,7 +39,6 @@ public class RR {
     Queue<String> preempt() {
         int temp, idx, stop_at = 0, size;
         ArrayList<Integer> currBT = new ArrayList<>();
-        Queue<Integer> isComplete = new LinkedList<>();
         Queue<String> gantArr = new LinkedList<>();
 
         this.sortProcessByAT();
